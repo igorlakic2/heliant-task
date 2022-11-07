@@ -4,7 +4,41 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .task-component button {
   margin: 15px;
+}
+
+.check {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: absolute;
+  -webkit-clip-path: polygon(0 0, 100% 100%, 100% 0);
+          clip-path: polygon(0 0, 100% 100%, 100% 0);
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #e09900;
+}
+.check ::before {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  content: "";
+  border: 20px solid;
+  border-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.checkmark {
+  display: block;
+  font: 20px sans-serif;
+  top: -5px;
+  right: 0;
+  text-align: center;
+  color: white;
+  height: 20px;
+  position: absolute;
 }/*# sourceMappingURL=SingleTask.css.map */
