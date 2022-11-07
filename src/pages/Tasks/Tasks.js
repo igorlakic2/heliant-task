@@ -59,7 +59,13 @@ const Tasks = () => {
 
   const finishTask = (e, task) => {
     e.stopPropagation();
-    console.log(task);
+    let items = [...tasks];
+    let itemById = items.find((el) => el.id === task.id);
+    const index = items.indexOf(itemById);
+    let item = { ...items[index] };
+    item.zavrsen = true;
+    items[index] = item;
+    setTasks(items);
   };
 
   useEffect(() => {
