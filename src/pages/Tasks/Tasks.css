@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.tasks-div div {
+.tasks-div .task-component {
   margin: 20px;
 }
 

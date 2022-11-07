@@ -11,21 +11,27 @@ const Tasks = () => {
   const [taskData, setTaskData] = useState({
     naziv: "",
     opis: "",
-    prioritet: "Nizak",
+    prioritet: "1",
     rokPredaje: "",
+    zavrsen: false,
   });
 
   const showTaskModal = (task) => {
     console.log(task);
   };
 
-  const deleteTask = (event) => {
-    event.stopPropagation();
+  const deleteTask = (e, task) => {
+    e.stopPropagation();
     console.log("delete");
   };
 
   const addTask = () => {
     setTasks([...tasks, taskData]);
+  };
+
+  const finishTask = (e, task) => {
+    e.stopPropagation();
+    console.log(task);
   };
 
   useEffect(() => {
@@ -52,7 +58,7 @@ const Tasks = () => {
             key={id}
             showTask={showTaskModal}
             deleteTask={deleteTask}
-            // finishTask={finishTask}
+            finishTask={finishTask}
           />
         ))}
       </div>

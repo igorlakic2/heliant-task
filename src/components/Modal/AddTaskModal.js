@@ -57,9 +57,9 @@ const AddTaskModal = ({ data, setData, setModalState, addTask }) => {
               value={data.prioritet}
               onChange={(e) => setData({ ...data, prioritet: e.target.value })}
             >
-              <option value="Nizak">Nizak</option>
-              <option value="Srednji">Srednji</option>
-              <option value="Visok">Visok</option>
+              <option value="1">Nizak</option>
+              <option value="2">Srednji</option>
+              <option value="3">Visok</option>
             </select>
             <br />
             <br />
