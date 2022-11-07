@@ -64,7 +64,7 @@ const SingleTaskModal = ({ data, setData, setModalState, editTask }) => {
           </select>
           <br />
           <br />
-          <button onClick={() => editTask(data)}>Dodaj zadatak</button>
+          <button onClick={() => editTask(data)}>Izmeni zadatak</button>
           {/* </form> */}
         </div>
       </div>
