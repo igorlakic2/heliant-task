@@ -11,7 +11,7 @@ const AddTaskModal = ({ data, setData, setModalState, addTask }) => {
           <span className="close" onClick={() => setModalState(false)}>
             &times;
           </span>
-          <h2>Modal Header</h2>
+          <h2>Novi zadatak</h2>
         </div>
         <div className="modal-body">
           <form>
@@ -63,12 +63,8 @@ const AddTaskModal = ({ data, setData, setModalState, addTask }) => {
             </select>
             <br />
             <br />
-            <input type="submit" value="Submit" />
             <button onClick={addTask}>Dodaj zadatak</button>
           </form>
-        </div>
-        <div className="modal-footer">
-          <h3>Modal Footer</h3>
         </div>
       </div>
     </div>
