@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
+import AddTaskModal from "../../components/Modal/AddTaskModal";
 import SingleTask from "../../components/SingleTask/SingleTask";
 import "./Tasks.css";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState(
-    JSON.parse(window.localStorage.getItem("tasks"))
+    JSON.parse(window.localStorage.getItem("tasks") || [])
   );
+  const [addModalState, setAddModalState] = useState(false);
+  const [taskData, setTaskData] = useState({
+    naziv: "",
+    opis: "",
+    prioritet: "Nizak",
+    rokPredaje: "",
+  });
 
-  const showTaskModal = (event) => {
-    console.log("single task");
+  const showTaskModal = (task) => {
+    console.log(task);
   };
 
   const deleteTask = (event) => {
@@ -17,26 +25,32 @@ const Tasks = () => {
   };
 
   const addTask = () => {
-    setTasks([...tasks, 1]);
+    setTasks([...tasks, taskData]);
   };
 
   useEffect(() => {
-    console.log(JSON.stringify(tasks));
     window.localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   return (
     <div>
-      <button className="add-button" onClick={addTask}>
+      {addModalState && (
+        <AddTaskModal
+          data={taskData}
+          setData={setTaskData}
+          setModalState={setAddModalState}
+          addTask={addTask}
+        />
+      )}
+      <button className="add-button" onClick={() => setAddModalState(true)}>
         Dodaj zadatak
       </button>
       <div className="tasks-div">
         {tasks.map((task, id) => (
           <SingleTask
+            task={task}
             key={id}
-            title={`Naslov ${task}`}
-            priority="Visok"
-            onClick={showTaskModal}
+            showTask={showTaskModal}
             deleteTask={deleteTask}
             // finishTask={finishTask}
           />

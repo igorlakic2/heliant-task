@@ -1,11 +1,11 @@
 import React from "react";
 import "./SingleTask.css";
 
-const SingleTask = ({ title, priority, onClick, deleteTask }) => {
+const SingleTask = ({ task, showTask, deleteTask }) => {
   return (
-    <div className="task-component" onClick={onClick}>
-      <p>Naziv: {title}</p>
-      <p>Prioritet: {priority}</p>
+    <div className="task-component" onClick={() => showTask(task)}>
+      <p>Naziv: {task.naziv}</p>
+      <p>Prioritet: {task.prioritet}</p>
       <div>
         <input
           type="checkbox"
