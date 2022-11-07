@@ -1,5 +1,6 @@
 import React from "react";
 import "./Modal.css";
+import { v4 as uuidv4 } from "uuid";
 
 const SingleTaskModal = ({
   data,
@@ -11,11 +12,23 @@ const SingleTaskModal = ({
 }) => {
   var todayDate = new Date().toISOString().slice(0, 10);
 
+  const closeModal = () => {
+    setModalState(false);
+    setData({
+      naziv: "",
+      opis: "",
+      prioritet: "1",
+      rokPredaje: "",
+      zavrsen: false,
+      id: uuidv4(),
+    });
+  };
+
   return (
     <div id="myModal" className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <span className="close" onClick={() => setModalState(false)}>
+          <span className="close" onClick={closeModal}>
             &times;
           </span>
           <h2>{title}</h2>
@@ -70,10 +83,7 @@ const SingleTaskModal = ({
             </select>
           </div>
           <div className="buttons-container">
-            <button
-              className="cancel-button"
-              onClick={() => setModalState(false)}
-            >
+            <button className="cancel-button" onClick={closeModal}>
               Odustani
             </button>
             <button className="submit-button" onClick={() => submitForm(data)}>

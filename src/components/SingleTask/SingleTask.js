@@ -10,7 +10,7 @@ const SingleTask = ({ task, showTask, deleteTask, finishTask }) => {
         </div>
       )}
 
-      <p>Naziv: {task.naziv}</p>
+      <p className="task-title">Naziv: {task.naziv}</p>
       <p>
         Prioritet:{" "}
         {task.prioritet === "1"
@@ -19,16 +19,8 @@ const SingleTask = ({ task, showTask, deleteTask, finishTask }) => {
           ? "Srednji"
           : "Visok"}
       </p>
-      <div>
-        {/* <input
-          type="checkbox"
-          id="vehicle1"
-          name="vehicle1"
-          value="Bike"
-          checked={task.zavrsen}
-          onChange={finishTask}
-        />
-        <label htmlFor="vehicle1">Završen</label> */}
+      <p>Rok predaje: {task.rokPredaje}</p>
+      <div className="buttons-container">
         <button onClick={(e) => finishTask(e, task)} disabled={task.zavrsen}>
           {task.zavrsen ? "Završen" : "Završi"}
         </button>

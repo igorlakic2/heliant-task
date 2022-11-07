@@ -45,3 +45,18 @@
   height: 20px;
   position: absolute;
 }
+.buttons-container {
+  button {
+    padding: 7px 10px;
+    margin: 10px;
+  }
+}
+
+.task-title {
+  overflow: hidden;
+  width: 200px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 50%;
+}
