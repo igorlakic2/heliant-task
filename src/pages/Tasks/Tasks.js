@@ -28,7 +28,11 @@ const Tasks = () => {
 
   const deleteTask = (e, task) => {
     e.stopPropagation();
-    console.log("delete");
+    let items = [...tasks];
+    let itemById = items.find((el) => el.id === task.id);
+    const index = items.indexOf(itemById);
+    items.splice(index, 1);
+    setTasks(items);
   };
 
   const addTask = () => {
