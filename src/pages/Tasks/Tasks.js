@@ -5,6 +5,7 @@ import "./Tasks.css";
 import { v4 as uuidv4 } from "uuid";
 
 const Tasks = () => {
+  const [sortType, setSortType] = useState("up");
   const [tasks, setTasks] = useState(() => {
     return window.localStorage.getItem("tasks")
       ? JSON.parse(window.localStorage.getItem("tasks"))
@@ -109,9 +110,23 @@ const Tasks = () => {
           Dodaj zadatak
         </button>
       </div>
+      <div className="sort-container">
+        Sortiranje po prioritetu
+        <select
+          value={sortType}
+          onChange={(event) => setSortType(event.target.value)}
+        >
+          <option value="up">Od nižeg ka višem</option>
+          <option value="down">Od višeg ka nižem</option>
+        </select>
+      </div>
       <div className="tasks-div">
         {tasks
-          .sort((a, b) => b.prioritet - a.prioritet)
+          .sort((a, b) =>
+            sortType === "down"
+              ? b.prioritet - a.prioritet
+              : a.prioritet - b.prioritet
+          )
           .map((task, id) => (
             <SingleTask
               task={task}
