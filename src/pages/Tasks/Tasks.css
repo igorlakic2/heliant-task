@@ -1,0 +1,7 @@
+.tasks-div {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tasks-div div {
+  margin: 20px;
+}/*# sourceMappingURL=Tasks.css.map */
