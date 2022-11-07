@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import AddTaskModal from "../../components/Modal/AddTaskModal";
 import SingleTaskModal from "../../components/Modal/SingleTaskModal";
 import SingleTask from "../../components/SingleTask/SingleTask";
 import "./Tasks.css";
 import { v4 as uuidv4 } from "uuid";
 
 const Tasks = () => {
-  const [tasks, setTasks] = useState(
-    JSON.parse(window.localStorage.getItem("tasks") || [])
-  );
+  const [tasks, setTasks] = useState(() => {
+    return window.localStorage.getItem("tasks")
+      ? JSON.parse(window.localStorage.getItem("tasks"))
+      : [];
+  });
   const [addModalState, setAddModalState] = useState(false);
   const [editModalState, setEditModalState] = useState(false);
   const [editData, setEditData] = useState(null);
@@ -37,6 +38,15 @@ const Tasks = () => {
 
   const addTask = () => {
     setTasks([...tasks, taskData]);
+    setAddModalState(false);
+    setTaskData({
+      naziv: "",
+      opis: "",
+      prioritet: "1",
+      rokPredaje: "",
+      zavrsen: false,
+      id: uuidv4(),
+    });
   };
 
   const editTask = (task) => {
@@ -75,24 +85,30 @@ const Tasks = () => {
   return (
     <div>
       {addModalState && (
-        <AddTaskModal
+        <SingleTaskModal
+          title="Novi zadatak"
+          buttonLabel="Dodaj zadatak"
           data={taskData}
           setData={setTaskData}
           setModalState={setAddModalState}
-          addTask={addTask}
+          submitForm={addTask}
         />
       )}
       {editModalState && (
         <SingleTaskModal
+          title="Izmena zadatka"
+          buttonLabel="Izmeni zadatak"
           data={editData}
           setData={setEditData}
           setModalState={setEditModalState}
-          editTask={editTask}
+          submitForm={editTask}
         />
       )}
-      <button className="add-button" onClick={() => setAddModalState(true)}>
-        Dodaj zadatak
-      </button>
+      <div className="add-button-container">
+        <button className="add-button" onClick={() => setAddModalState(true)}>
+          Dodaj zadatak
+        </button>
+      </div>
       <div className="tasks-div">
         {tasks
           .sort((a, b) => b.prioritet - a.prioritet)
