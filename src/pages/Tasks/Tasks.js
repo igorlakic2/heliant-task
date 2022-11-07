@@ -7,6 +7,15 @@ const Tasks = () => {
     JSON.parse(window.localStorage.getItem("tasks"))
   );
 
+  const showTaskModal = (event) => {
+    console.log("single task");
+  };
+
+  const deleteTask = (event) => {
+    event.stopPropagation();
+    console.log("delete");
+  };
+
   const addTask = () => {
     setTasks([...tasks, 1]);
   };
@@ -27,7 +36,9 @@ const Tasks = () => {
             key={id}
             title={`Naslov ${task}`}
             priority="Visok"
-            onClick={() => console.log("Single")}
+            onClick={showTaskModal}
+            deleteTask={deleteTask}
+            // finishTask={finishTask}
           />
         ))}
       </div>
