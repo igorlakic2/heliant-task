@@ -79,15 +79,17 @@ const Tasks = () => {
           data={taskData}
           setData={setTaskData}
           setModalState={setAddModalState}
-          addTask={addTask}
+          submitForm={addTask}
         />
       )}
       {editModalState && (
         <SingleTaskModal
+          title="Izmena zadatka"
+          buttonLabel="Izmeni zadatak"
           data={editData}
           setData={setEditData}
           setModalState={setEditModalState}
-          editTask={editTask}
+          submitForm={editTask}
         />
       )}
       <button className="add-button" onClick={() => setAddModalState(true)}>
