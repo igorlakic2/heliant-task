@@ -1,0 +1,13 @@
+.tasks-div {
+  display: flex;
+  flex-wrap: wrap;
+
+  div {
+    margin: 20px;
+  }
+}
+
+.add-button {
+  padding: 8px 15px;
+  margin: 10px;
+}
